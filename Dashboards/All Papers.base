@@ -1,0 +1,20 @@
+filters:
+  and:
+    - file.path.contains("Papers/")
+    - file.ext == "md"
+views:
+  - type: table
+    name: All Papers
+    groupBy:
+      property: project
+      direction: ASC
+    order:
+      - file.name
+      - authors
+      - year
+      - journal
+      - project
+      - tags
+      - status
+      - rating
+      - summary

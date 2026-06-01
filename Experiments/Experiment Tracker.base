@@ -1,0 +1,23 @@
+filters:
+  and:
+    - file.inFolder("Experiments")
+    - file.ext == "md"
+views:
+  - type: table
+    name: Experiment Tracker
+    order:
+      - file.name
+      - date
+      - project
+      - task_type
+      - method
+      - target
+      - software
+      - version
+      - status
+      - summary
+    sort:
+      - property: link
+        direction: DESC
+      - property: date
+        direction: DESC

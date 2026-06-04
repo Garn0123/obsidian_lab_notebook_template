@@ -17,4 +17,5 @@ views:
       - tags
       - status
       - rating
+      - comment
       - summary

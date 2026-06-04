@@ -39,6 +39,12 @@ const extractField = (field) => {
   return cleanLatex(raw)
 }
 
+const extractFieldOrBare = (field) => {
+  const quoted = extractField(field)
+  if (quoted) return quoted
+  const bare = bibtex.match(new RegExp(`${field}\\s*=\\s*([^,}\\s]+)`, "is"))
+  return bare ? bare[1].trim() : ""
+}
 const sanitizeFilename = (str) => {
   return str
     .replace(/[\\/:*?"<>|#^[\]]/g, "")
@@ -57,11 +63,11 @@ const hasData = bibtex && bibtex.trim().startsWith("@")
 
 const rawAuthors = hasData ? bibtex.match(/author\s*=\s*"([^"]+)"/is)?.[1] || bibtex.match(/author\s*=\s*\{([^}]+)\}/is)?.[1] || "" : ""
 
-const title   = hasData ? extractField("title")                              : await tp.system.prompt("Title")
-const authors = hasData ? formatAuthors(rawAuthors)                          : await tp.system.prompt("Authors")
-const year    = hasData ? extractField("year")                               : await tp.system.prompt("Year")
+const title   = hasData ? extractField("title")                                  : await tp.system.prompt("Title")
+const authors = hasData ? formatAuthors(rawAuthors)                              : await tp.system.prompt("Authors")
+const year    = hasData ? extractFieldOrBare("year")                             : await tp.system.prompt("Year")
 const journal = hasData ? (extractField("journal") || extractField("booktitle")) : await tp.system.prompt("Journal / Venue")
-const doi     = hasData ? extractField("doi")                                : await tp.system.prompt("DOI")
+const doi     = hasData ? extractField("doi")                                    : await tp.system.prompt("DOI")
 
 await tp.file.rename(sanitizeFilename(title))
 -%>
@@ -74,8 +80,10 @@ rating:
 status: unread
 project: 
 tags: []
-summary: 
+comment: 
 ---
+summary::
+
 # <% title %>
 
 ## Key Findings

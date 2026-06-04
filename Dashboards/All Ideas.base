@@ -1,0 +1,16 @@
+filters:
+  and:
+    - 'file.ext == "md"'
+    - 'file.inFolder("Ideas")'
+views:
+  - type: table
+    name: All Ideas
+    order:
+      - file.name
+      - date
+      - project
+      - status
+      - tags
+      - summary
+    groupBy:
+      property: status

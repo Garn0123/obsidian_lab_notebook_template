@@ -1,0 +1,15 @@
+filters:
+  and:
+    - 'file.ext == "md"'
+    - 'file.inFolder("Methods")'
+views:
+  - type: table
+    name: All Methods
+    order:
+      - file.name
+      - version
+      - software
+      - tags
+      - summary
+    groupBy:
+      property: tags

@@ -2,6 +2,8 @@
 
 A structured Obsidian vault for scientific record-keeping, designed for researchers, graduate students, and their mentees. Built around daily notes, experiment logs, literature tracking, and project dashboards — all connected through a consistent metadata system.
 
+A DOI -> BibTex converter can be found at: https://www.bibtex.com/c/doi-to-bibtex-converter/
+
 ---
 
 ## Table of Contents

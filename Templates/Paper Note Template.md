@@ -45,6 +45,7 @@ const extractFieldOrBare = (field) => {
   const bare = bibtex.match(new RegExp(`${field}\\s*=\\s*([^,}\\s]+)`, "is"))
   return bare ? bare[1].trim() : ""
 }
+
 const sanitizeFilename = (str) => {
   return str
     .replace(/[\\/:*?"<>|#^[\]]/g, "")
@@ -65,7 +66,7 @@ const rawAuthors = hasData ? bibtex.match(/author\s*=\s*"([^"]+)"/is)?.[1] || bi
 
 const title   = hasData ? extractField("title")                                  : await tp.system.prompt("Title")
 const authors = hasData ? formatAuthors(rawAuthors)                              : await tp.system.prompt("Authors")
-const year    = hasData ? extractFieldOrBare("year")                             : await tp.system.prompt("Year")
+const year    = hasData ? extractFieldOrBare("year")                                : await tp.system.prompt("Year")
 const journal = hasData ? (extractField("journal") || extractField("booktitle")) : await tp.system.prompt("Journal / Venue")
 const doi     = hasData ? extractField("doi")                                    : await tp.system.prompt("DOI")
 
@@ -83,7 +84,6 @@ tags: []
 comment: 
 ---
 summary::
-
 # <% title %>
 
 ## Key Findings

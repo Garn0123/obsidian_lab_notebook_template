@@ -109,3 +109,25 @@ views:
 
 ```
 
+## Presentations & Abstracts
+
+```base
+filters:
+  and:
+    - 'project == this.project'
+    - 'note_type == "presentation"'
+    - 'file.ext == "md"'
+views:
+  - type: table
+    name: Presentations & Abstracts
+    order:
+      - file.name
+      - venue
+      - presentation_type
+      - status
+      - date_submitted
+      - date_presented
+      - summary
+    columnSize:
+      file.name: 220
+```
